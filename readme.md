@@ -1,8 +1,9 @@
----
 
 # 💼 career-advisor-multi-agent
 
 Sistema inteligente que recomenda carreiras ideais com base em **habilidades técnicas**, **experiências profissionais**, **interesses pessoais** e **perfil psicológico**, utilizando **LangChain**, **OpenAI GPT-4o** e **multi-agentes**.
+
+![alt text](image.png)
 
 ## 🧠 Visão Geral
 
@@ -14,7 +15,7 @@ Este projeto usa uma arquitetura orientada a agentes para simular um processo de
 * [LangChain](https://www.langchain.com/)
 * [OpenAI GPT-4o](https://platform.openai.com/docs/models/gpt-4o)
 * Streamlit (versão com front-end)
-* dotenv
+* python-dotenv
 * pandas
 
 ---
@@ -26,7 +27,7 @@ career-advisor-multi-agent/
 │
 ├── .env                       # Chaves de API (OpenAI)
 ├── README.md
-├── main.py                    # Execução principal (CLI)
+├── main.py                    # Execução principal via CLI
 ├── streamlit_app.py           # Interface web com Streamlit
 │
 ├── agente.py                  # Montagem do agente principal
@@ -79,7 +80,7 @@ pip install -r requirements.txt
 
 ## ▶️ Como Executar
 
-### Modo 1: Linha de Comando
+### Modo 1: Linha de Comando (CLI)
 
 ```bash
 python main.py
@@ -99,7 +100,7 @@ Você poderá fazer perguntas como:
 streamlit run streamlit_app.py
 ```
 
-A interface será aberta no navegador. Você poderá escolher um candidato e ver as recomendações de carreira automaticamente.
+A interface será aberta no navegador. Você poderá interagir com o sistema, selecionando candidatos e recebendo recomendações visuais de carreira de forma intuitiva e atraente.
 
 ---
 
@@ -125,26 +126,28 @@ UX Designer,Design,"UX,Adobe",0.5,0.5
 
 ## 🤖 Como Funciona
 
-1. **Ferramentas** (Tools) são carregadas com os dados do candidato.
-2. O **agente LangChain** é montado com raciocínio baseado em ferramentas (`OpenAIFunctionsAgent` ou `ReActAgent`).
-3. A pergunta do usuário é analisada e o agente orquestra o uso das ferramentas para compor a resposta final.
+1. **Ferramentas (Tools)** carregam dados e regras de negócios a partir dos CSVs.
+2. O **agente LangChain** é configurado para usar essas ferramentas e raciocinar com base nos dados.
+3. A pergunta do usuário é processada pelo agente, que consulta as ferramentas e retorna uma resposta contextualizada e personalizada.
 
 ---
 
 ## ✅ Funcionalidades
 
-* Recomendações personalizadas
-* Suporte a múltiplos candidatos
-* Interface amigável (CLI ou Web)
-* Explicações baseadas em perfil psicológico e técnico
+* Recomendações de carreira personalizadas para candidatos
+* Suporte para múltiplos candidatos e vagas
+* Duas formas de interação: linha de comando e interface web moderna (Streamlit)
+* Explicações baseadas em perfis psicológicos e habilidades técnicas
+* Arquitetura modular e fácil de estender
 
 ---
 
 ## 📌 Melhorias Futuras
 
-* Integração com APIs de vagas reais (ex: LinkedIn, Glassdoor)
-* Chatbot em tempo real com memória
-* Ajuste de pesos por aprendizado de máquina
+* Integração com APIs reais de vagas (LinkedIn, Glassdoor, etc.)
+* Chatbot em tempo real com memória de contexto
+* Ajuste de pesos e recomendações via aprendizado de máquina
+* Dashboard analítico com dados históricos
 
 ---
 

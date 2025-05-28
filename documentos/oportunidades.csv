@@ -1,3 +1,51 @@
 CARGO,AREA,REQUISITOS,PESO_INTERESSE,PESO_HABILIDADES
 Cientista de Dados,TI,"Python,SQL",0.4,0.6
 UX Designer,Design,"UX,Adobe",0.5,0.5
+Desenvolvedor Backend,TI,"C#,SQL,REST",0.3,0.7
+Desenvolvedor Frontend,TI,"JavaScript,React,CSS",0.4,0.6
+Analista de Marketing,Marketing,"SEO,Google Ads",0.6,0.4
+Engenheiro de Dados,TI,"Spark,Python,AWS",0.3,0.7
+Product Manager,Produto,"Agile,Kanban,Comunicação",0.5,0.5
+Scrum Master,TI,"Scrum,Agile,Gestão",0.6,0.4
+Analista Financeiro,Financeiro,"Excel,Contabilidade",0.5,0.5
+Arquiteto de Soluções,TI,"Arquitetura,Cloud,C#",0.4,0.6
+Analista de BI,TI,"Power BI,SQL,ETL",0.4,0.6
+Desenvolvedor Mobile,TI,"Flutter,Dart",0.4,0.6
+Designer Gráfico,Design,"Photoshop,Illustrator",0.5,0.5
+Especialista em Mídias Sociais,Marketing,"Instagram,Analytics",0.7,0.3
+Analista de RH,Recursos Humanos,"Recrutamento,People Analytics",0.6,0.4
+Psicólogo Organizacional,Recursos Humanos,"Psicologia,Entrevista",0.7,0.3
+Arquiteto de Software,TI,"Design Patterns,Microservices",0.3,0.7
+Cientista de Pesquisa,Academia,"Pesquisa,Estatística",0.8,0.2
+Desenvolvedor Full Stack,TI,"JavaScript,Node,React",0.4,0.6
+Administrador de Redes,Infraestrutura,"Redes,Firewall",0.3,0.7
+Analista de Compliance,Jurídico,"Regulação,Auditoria",0.6,0.4
+Analista de Dados,TI,"SQL,Excel,Estatística",0.4,0.6
+Gerente de Projetos,TI,"PMBOK,Gestão",0.5,0.5
+Advogado Corporativo,Jurídico,"Direito,Cível,Contratos",0.7,0.3
+Analista de Suporte Técnico,TI,"Suporte,Windows,Linux",0.4,0.6
+Cientista de Clima,Pesquisa,"Meteorologia,Modelagem",0.8,0.2
+Gestor de Produtos Digitais,Produto,"UX,Agile",0.5,0.5
+Engenheiro de Machine Learning,TI,"TensorFlow,Python",0.3,0.7
+Analista de Qualidade,TI,"Testes,Automação",0.5,0.5
+Engenheiro de Software Embarcado,TI,"C++,RTOS",0.3,0.7
+Gestor de Inovação,Estratégia,"Pesquisa,Negócios",0.6,0.4
+Jornalista Digital,Comunicação,"Redação,SEO",0.6,0.4
+Médico Clínico Geral,Saúde,"CRM,Diagnóstico",0.7,0.3
+Enfermeiro,Saúde,"Cuidados,Gestão",0.6,0.4
+Psicólogo Clínico,Saúde,"Escuta,Anamnese",0.8,0.2
+Professor Universitário,Ensino,"Didática,Pesquisa",0.7,0.3
+Coordenador Pedagógico,Ensino,"Educação,Gestão",0.6,0.4
+Gerente de Supply Chain,Logística,"Logística,Gestão",0.5,0.5
+Técnico em Eletrônica,Indústria,"Circuitos,Manutenção",0.4,0.6
+Engenheiro de Produção,Indústria,"Lean,Processos",0.4,0.6
+Analista de Logística,Logística,"Rotas,Fretes",0.5,0.5
+Engenheiro Civil,Engenharia,"AutoCAD,Orçamentos",0.4,0.6
+Arquiteto,Engenharia,"AutoCAD,Projetos",0.6,0.4
+Desenvolvedor GameDev,TI,"Unity,C#",0.4,0.6
+Game Designer,TI,"Gameplay,UX",0.6,0.4
+Animador 3D,Design,"Maya,Blender",0.6,0.4
+Analista de CRM,Marketing,"Salesforce,Relatórios",0.5,0.5
+Consultor SAP,TI,"SAP,ABAP",0.3,0.7
+Data Steward,TI,"Governança,Metadados",0.4,0.6
+Especialista em Cibersegurança,TI,"Segurança,Firewall",0.3,0.7
