@@ -9,6 +9,21 @@ Sistema inteligente que recomenda carreiras ideais com base em **habilidades té
 
 Este projeto usa uma arquitetura orientada a agentes para simular um processo de aconselhamento profissional. A IA analisa dados do candidato (armazenados em `.csv`) e sugere áreas e cargos ideais, cruzando habilidades, experiências e perfis com oportunidades disponíveis.
 
+
+## Funcionalidades do Agente de Carreira IA
+
+O AgenteCarreiraIA é um sistema inteligente projetado para auxiliar usuários em suas decisões de carreira. Ele utiliza uma combinação de ferramentas e um modelo de linguagem grande (LLM) para fornecer insights e recomendações personalizadas. Suas principais funcionalidades incluem:
+
+- Recomendação de Carreiras: Analisa informações fornecidas pelo usuário (interesses, experiências, etc.) para sugerir carreiras que melhor se alinham ao seu perfil.
+- Extração de Habilidades Técnicas: Identifica e extrai habilidades técnicas relevantes a partir de descrições de vagas, currículos ou outras fontes de texto.
+- Avaliação de Perfil Psicológico: Avalia o perfil psicológico do usuário para entender suas características de personalidade, seus valores e suas preferências de trabalho, auxiliando na escolha de carreiras mais adequadas.
+- Consulta de Oportunidades: Acessa e apresenta informações sobre diversas oportunidades de carreira disponíveis, como vagas de emprego e programas educacionais.
+
+
+O agente utiliza um fluxo de trabalho orquestrado pelo modelo de linguagem gpt-4o. Ao receber uma pergunta do usuário, o agente decide qual ferramenta utilizar para responder da melhor forma possível, podendo inclusive combinar o uso de múltiplas ferramentas para fornecer uma resposta abrangente.
+
+
+
 ## 🛠️ Tecnologias Utilizadas
 
 * Python 3.10+
