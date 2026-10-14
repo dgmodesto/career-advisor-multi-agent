@@ -1,21 +1,21 @@
 # 💼 career-advisor-multi-agent
 
-Agente de IA que recomenda carreiras a partir de habilidades, experiências, interesses e perfil psicológico, usando **LangChain**, **GPT-4o** e um agente **ReAct** que orquestra ferramentas especializadas.
+An AI agent that recommends careers based on skills, experience, interests and psychological profile, using **LangChain**, **GPT-4o** and a **ReAct** agent that orchestrates specialized tools.
 
 ![Demo](image.png)
 
-## 🏗️ Arquitetura
+## 🏗️ Architecture
 
-### Contexto (C4 – nível 1)
+### Context (C4 – level 1)
 
 ```mermaid
 flowchart LR
-    U([Usuário]) -->|pergunta em linguagem natural| APP[Career Advisor<br/>Streamlit + Agente ReAct]
+    U([User]) -->|natural-language question| APP[Career Advisor<br/>Streamlit + ReAct Agent]
     APP -->|prompts / tool calls| LLM[(OpenAI GPT-4o)]
-    APP -->|lê| CSV[(CSV: candidatos<br/>e oportunidades)]
+    APP -->|reads| CSV[(CSV: candidates<br/>and opportunities)]
 ```
 
-### Containers e componentes (C4 – nível 2/3)
+### Containers and components (C4 – level 2/3)
 
 ```mermaid
 flowchart TB
@@ -30,87 +30,88 @@ flowchart TB
     T4 --> C2[(oportunidades.csv)]
 ```
 
-### Fluxo de uma requisição
+### Request flow
 
 ```mermaid
 sequenceDiagram
-    actor U as Usuário
+    actor U as User
     participant UI as Streamlit
-    participant A as Agente ReAct
+    participant A as ReAct Agent
     participant L as GPT-4o
     participant T as Tools
-    U->>UI: "Qual carreira ideal para Joana?"
-    UI->>A: executar(pergunta)
-    loop até resposta final
-        A->>L: prompt ReAct + histórico
+    U->>UI: "What is the ideal career for Joana?"
+    UI->>A: executar(question)
+    loop until final answer
+        A->>L: ReAct prompt + history
         L-->>A: Thought + Action(tool, input)
         A->>T: run(input)
         T-->>A: Observation
     end
     A-->>UI: Final Answer
-    UI-->>U: resposta
+    UI-->>U: answer
 ```
 
-## 🧭 Decisões de arquitetura
+## 🧭 Architecture decisions
 
-| Decisão | Motivo | Trade-off |
+| Decision | Rationale | Trade-off |
 |---|---|---|
-| Agente **ReAct** com tools isoladas | Cada capacidade é testável e substituível; o LLM decide a composição | Mais chamadas ao LLM → maior latência e custo por pergunta |
-| Dados em **CSV** | Zero infraestrutura para um protótipo | Sem escala, consultas ou governança de dados |
-| Tools como classes `BaseTool` | Interface uniforme para registrar novas ferramentas | Acoplamento à API do LangChain (versão fixada em `requirements.txt`) |
-| Prompt `hwchase17/react` via LangChain Hub | Prompt padrão e consolidado | Dependência de rede em tempo de execução e prompt não versionado no repo |
+| **ReAct** agent with isolated tools | Each capability is testable and replaceable; the LLM decides composition | More LLM calls → higher latency and cost per question |
+| Data in **CSV** | Zero infrastructure for a prototype | No scale, querying or data governance |
+| Tools as `BaseTool` classes | Uniform interface to register new tools | Coupled to the LangChain API (version pinned in `requirements.txt`) |
+| `hwchase17/react` prompt from LangChain Hub | Standard, proven prompt | Runtime network dependency; prompt is not versioned in the repo |
 
-## ⚠️ Estado atual e limitações
+## ⚠️ Current state and limitations
 
-Este é um **protótipo de estudo**. Para ser transparente sobre o que é real e o que é simulado:
+This is a **study prototype**. To be transparent about what is real and what is simulated:
 
-- `RecomendadorDeCarreira` usa o LLM para extrair o perfil, mas a área sugerida está fixa (“Tecnologia da Informação”).
-- `HabilidadesTecnicas` e `PerfilPsicologico` retornam valores simulados.
-- Apenas `TodasOportunidades` lê dados reais (CSV) sem simulação.
-- Não há avaliação automatizada, testes nem observabilidade.
+- `RecomendadorDeCarreira` uses the LLM to extract the profile, but the suggested area is hard-coded ("Information Technology").
+- `HabilidadesTecnicas` and `PerfilPsicologico` return simulated values.
+- Only `TodasOportunidades` reads real data (CSV) without simulation.
+- There is no automated evaluation, testing or observability.
+- Prompts, tool names and sample data are in Portuguese.
 
-## 🚀 Roadmap para produção
+## 🚀 Roadmap to production
 
-- [ ] Substituir as respostas simuladas por lógica real (extração de habilidades via LLM com saída estruturada; matching ponderado usando `PESO_HABILIDADES` e `PESO_INTERESSE`)
-- [ ] Migrar para **LangGraph** com estado explícito e *tool calling* nativo
-- [ ] Camada de **avaliação** (dataset de perguntas + critérios, LLM-as-judge) rodando no CI
-- [ ] **Observabilidade**: tracing (OpenTelemetry/LangSmith), custo e latência por requisição
-- [ ] **Guardrails**: validação de entrada/saída, proteção de dados pessoais (PII) e mitigação de vieses
-- [ ] Persistência real (PostgreSQL/Azure AI Search) e suporte a **Azure OpenAI**
-- [ ] Testes unitários das tools e CI com GitHub Actions
+- [ ] Replace simulated responses with real logic (LLM-based skill extraction with structured output; weighted matching using `PESO_HABILIDADES` and `PESO_INTERESSE`)
+- [ ] Migrate to **LangGraph** with explicit state and native tool calling
+- [ ] **Evaluation** layer (question dataset + criteria, LLM-as-judge) running in CI
+- [ ] **Observability**: tracing (OpenTelemetry/LangSmith), cost and latency per request
+- [ ] **Guardrails**: input/output validation, PII protection and bias mitigation
+- [ ] Real persistence (PostgreSQL/Azure AI Search) and **Azure OpenAI** support
+- [ ] Unit tests for the tools and CI with GitHub Actions
 
-## 📁 Estrutura
+## 📁 Structure
 
 ```
-├── main.py            # UI Streamlit (ponto de entrada)
-├── agente.py          # Agente ReAct + registro das tools
-├── carreira.py        # Tool: recomendação de área
-├── habilidades.py     # Tool: habilidades técnicas
-├── psicologia.py      # Tool: perfil psicológico
-├── oportunidades.py   # Tool: lista de vagas
+├── main.py            # Streamlit UI (entry point)
+├── agente.py          # ReAct agent + tool registration
+├── carreira.py        # Tool: career area recommendation
+├── habilidades.py     # Tool: technical skills
+├── psicologia.py      # Tool: psychological profile
+├── oportunidades.py   # Tool: job openings list
 ├── documentos/        # candidatos.csv, oportunidades.csv
 └── requirements.txt
 ```
 
-## ▶️ Como executar
+## ▶️ Running locally
 
 ```bash
 git clone https://github.com/dgmodesto/career-advisor-multi-agent.git
 cd career-advisor-multi-agent
 python -m venv venv
-venv\Scripts\activate            # Windows (Linux/macOS: source venv/bin/activate)
+venv\Scripts\activate            # Linux/macOS: source venv/bin/activate
 pip install -r requirements.txt
 echo OPENAI_API_KEY=sk-... > .env
 streamlit run main.py
 ```
 
-Exemplos de perguntas:
+Example questions:
 
-- "Qual carreira ideal para Joana?"
-- "Carlos é melhor para marketing ou produto?"
-- "Compare Joana e Carlos para vaga de Cientista de Dados."
+- "What is the ideal career for Joana?"
+- "Is Carlos a better fit for marketing or product?"
+- "Compare Joana and Carlos for a Data Scientist role."
 
-## 🧪 Dados de exemplo
+## 🧪 Sample data
 
 `documentos/candidatos.csv`
 
@@ -132,6 +133,6 @@ UX Designer,Design,"UX,Adobe",0.5,0.5
 
 Python 3.10+ · LangChain · OpenAI GPT-4o · Streamlit · pandas · python-dotenv
 
-## 📄 Licença
+## 📄 License
 
 MIT
