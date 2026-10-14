@@ -4,11 +4,11 @@ from langchain_core.pydantic_v1 import Field, BaseModel
 from langchain.tools import BaseTool
 
 class HabilidadesEntrada(BaseModel):
-    texto: str = Field(description="Nome do candidato para busca no banco de dados.")
+    texto: str = Field(description="Candidate name used to search the database.")
 
 class HabilidadesTecnicas(BaseTool):
     name = "HabilidadesTecnicas"
-    description = "Extrai habilidades técnicas a partir do nome do candidato."
+    description = "Extracts technical skills from the candidate's name."
 
     def _run(self, input: str) -> str:
         entrada = HabilidadesEntrada(texto=input)
@@ -17,10 +17,10 @@ class HabilidadesTecnicas(BaseTool):
             dados["NOME"] = dados["NOME"].str.lower()
             candidato = dados[dados["NOME"] == entrada.texto.lower()]
             if candidato.empty:
-                return f"Nenhum candidato encontrado com o nome: {entrada.texto}"
+                return f"No candidate found with the name: {entrada.texto}"
             descricao = candidato.iloc[0]["DESCRICAO"]
-            # Aqui você pode aplicar um modelo LLM ou regex no futuro
-            habilidades = ["Python", "SQL", "Machine Learning"]  # Simulação
-            return f"Habilidades extraídas para {entrada.texto}: {', '.join(habilidades)}"
+            # An LLM or regex could be applied here in the future
+            habilidades = ["Python", "SQL", "Machine Learning"]  # Simulated
+            return f"Skills extracted for {entrada.texto}: {', '.join(habilidades)}"
         except Exception as e:
-            return f"Erro ao processar as habilidades: {str(e)}"
+            return f"Error processing skills: {str(e)}"

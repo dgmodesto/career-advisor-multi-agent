@@ -12,24 +12,24 @@ def main():
     st.title("🎯 Career Advisor Multi-Agent")
     st.markdown(
         """
-        Bem-vindo ao sistema de recomendação de carreira inteligente!  
-        Faça perguntas sobre perfis profissionais, áreas, habilidades, e receba recomendações personalizadas com base em inteligência artificial.
+        Welcome to the intelligent career recommendation system!  
+        Ask about professional profiles, career areas and skills, and get personalized AI-based recommendations.
         """
     )
     st.divider()
 
     agente = AgenteCarreiraIA()
 
-    pergunta = st.text_area("Digite sua pergunta aqui:", height=120)
+    pergunta = st.text_area("Type your question here:", height=120)
 
-    if st.button("Enviar"):
+    if st.button("Send"):
         if pergunta.strip():
-            with st.spinner("Analisando sua pergunta..."):
+            with st.spinner("Analyzing your question..."):
                 resposta = agente.executar(pergunta)
-            st.markdown("### Resposta:")
+            st.markdown("### Answer:")
             st.success(resposta)
         else:
-            st.warning("Por favor, digite uma pergunta para continuar.")
+            st.warning("Please type a question to continue.")
 
 if __name__ == "__main__":
     main()

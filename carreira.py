@@ -7,23 +7,23 @@ import os
 import json
 
 class DadosDoCandidato(BaseModel):
-    perfil: str = Field(description="Perfil do candidato, como por exemplo 'comunicativo', 'analítico', etc.")
+    perfil: str = Field(description="Candidate profile, e.g. 'communicative', 'analytical', etc.")
 
 class RecomendadorDeCarreira(BaseTool):
     name = "RecomendadorDeCarreira"
-    description = "Sugere áreas de atuação com base no perfil do candidato."
+    description = "Suggests career areas based on the candidate's profile."
 
     def _run(self, input: str) -> str:
         llm = ChatOpenAI(model="gpt-4o", api_key=os.getenv("OPENAI_API_KEY"))
         parser = JsonOutputParser(pydantic_object=DadosDoCandidato)
 
         template = PromptTemplate(
-            template="""A seguir está uma descrição do perfil de um candidato.
-Extraia o perfil principal do candidato e gere uma sugestão de área de atuação.
+            template="""Below is a description of a candidate's profile.
+Extract the candidate's main profile and generate a suggested career area.
 -----------------
 {input}
 -----------------
-Formato de saída:
+Output format:
 {formato_saida}
 """,
             input_variables=["input"],
@@ -34,4 +34,4 @@ Formato de saída:
         resposta = cadeia.invoke({"input": input})
         perfil = resposta.perfil.lower().strip()
 
-        return f"Área sugerida com base no perfil '{perfil}': Tecnologia da Informação."
+        return f"Suggested area based on the profile '{perfil}': Information Technology."

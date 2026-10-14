@@ -68,7 +68,7 @@ This is a **study prototype**. To be transparent about what is real and what is 
 - `HabilidadesTecnicas` and `PerfilPsicologico` return simulated values.
 - Only `TodasOportunidades` reads real data (CSV) without simulation.
 - There is no automated evaluation, testing or observability.
-- Prompts, tool names and sample data are in Portuguese.
+- Prompts and UI are in English; identifiers, CSV columns and sample data remain in Portuguese.
 
 ## 🚀 Roadmap to production
 
